@@ -1,0 +1,33 @@
+Bus* addBusDetails(Bus* head) {
+    int id, total_seats;
+    char driver[50], departure[50], arrival[50], departure_time[10], arrival_time[10];
+
+    printf("Enter bus ID: ");
+    scanf("%d", &id);
+    printf("Enter driver's name: ");
+    scanf("%s", driver);
+    printf("Enter total seats in the bus: ");
+    scanf("%d", &total_seats);
+    printf("Enter departure location: ");
+    scanf("%s", departure);
+    printf("Enter arrival location: ");
+    scanf("%s", arrival);
+    printf("Enter departure time (HH:MM): ");
+    scanf("%s", departure_time);
+    printf("Enter arrival time (HH:MM): ");
+    scanf("%s", arrival_time);
+
+    Bus* newBus = createBus(id, driver, total_seats, 0, departure, arrival, departure_time, arrival_time);
+
+    if (head == NULL) {
+        head = newBus;
+    } else {
+        Bus* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newBus;
+    }
+    printf("Bus details added successfully.\n");
+    return head;
+}
