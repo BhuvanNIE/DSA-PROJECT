@@ -1,0 +1,35 @@
+void viewBuses(Bus* head) {
+    if (head == NULL) {
+        printf("No buses available!\n");
+        return;
+    }
+
+    printf("\nAvailable Buses:\n");
+    printf("ID\tDriver\t\tSeats Available\tDeparture location\tArrival location\t\tDeparture Time\tArrival Time\n");
+    while (head != NULL) {
+        printf("%d\t%s\t\t%d\t\t%s\t\t%s\t\t%s\t\t%s\n", head->bus_id, head->driver_name, head->total_seats - head->booked_seats, head->departure, head->arrival, head->departure_time, head->arrival_time);
+        head = head->next;
+    }
+}
+
+void bookTicket(Bus* head) {
+    int id, seatsToBook;
+    printf("Enter bus ID to book tickets: ");
+    scanf("%d", &id);
+    printf("Enter number of seats to book: ");
+    scanf("%d", &seatsToBook);
+
+    while (head != NULL) {
+        if (head->bus_id == id) {
+            if (head->total_seats - head->booked_seats >= seatsToBook) {
+                head->booked_seats += seatsToBook;
+                printf("Successfully booked %d seats on bus %d.\n", seatsToBook, id);
+            } else {
+                printf("Not enough seats available!\n");
+            }
+            return;
+        }
+        head = head->next;
+    }
+    printf("Bus with ID %d not found.\n", id);
+}
