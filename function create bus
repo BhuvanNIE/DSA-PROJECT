@@ -1,0 +1,17 @@
+Bus* createBus(int id, char* driver, int total, int booked, char* departure, char* arrival, char* departure_time, char* arrival_time) {
+    Bus* newBus = (Bus*)malloc(sizeof(Bus));
+    if (!newBus) {
+        printf("Memory allocation failed!\n");
+        exit(1);
+    }
+    newBus->bus_id = id;
+    strcpy(newBus->driver_name, driver);
+    newBus->total_seats = total;
+    newBus->booked_seats = booked;
+    strcpy(newBus->departure, departure); 
+    strcpy(newBus->arrival, arrival);
+    strcpy(newBus->departure_time, departure_time); 
+    strcpy(newBus->arrival_time, arrival_time);     
+    newBus->next = NULL;
+    return newBus;
+}
